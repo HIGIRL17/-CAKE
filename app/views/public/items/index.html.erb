@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 mt-3">
+        <%= render "public/items/sidebar", genres: @genres %>
+    </div>
+    <div class="col-9 mt-3">
+      <h4>
+        <% if params[:id] %>
+         <%= @genre.name %><span class="small text-muted"> 全 <%= @items.count %> 件</span>
+        <% else %>
+         商品一覧<span class="small text-muted"> 全 <%= @items.count %> 件</span>
+        <% end %>
+      </h4>
+      <div class="row">
+        <% @items.each do |item| %>
+          <table class="col-3 font-weight-bold">
+            <tr>
+              <td>
+                <%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_image(150,200) %>
+                <% end %>
+              </td>
+            </tr>
+            <tr><td><%= item.name %></td></tr>
+            <tr><td>￥<%= item.add_tax_price.to_s(:delimited) %></td></tr>
+          </table>
+          <% end %>
+      </div>
+      <%= paginate @items %>
+     </div>
+  </div>
+</div>

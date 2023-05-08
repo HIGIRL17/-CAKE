@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="d-flex justify-content-center font-weight-bold" style="background-color:#f5f5f5; font-size:25px; margin-left:40px; margin-bottom:30px; height:40px; width:220px;">
+    配送先登録/一覧
+  </div>
+  <div class="row">
+    <div class="container font-weight-bold">
+      <%= form_with model: @address do |f| %>
+      <div class="form-group form-inline row font-weight-bold">
+        <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-md-3 d-flex justify-content-start"%>
+        <%= f.text_field :postal_code, class: "col-md-3 form-control form-control-lg" %>
+      </div>
+      <div class="form-group form-inline row font-weight-bold">
+        <%= f.label :"住所" ,class: "col-md-3 d-flex justify-content-start" %>
+        <%= f.text_field :address, class: "col-md-3 form-control form-control-lg" %>
+      </div>
+      <div class="form-group form-inline row font-weight-bold">
+        <%= f.label :"宛名" ,class: "col-md-3 d-flex justify-content-start" %>
+        <%= f.text_field :name, class: "col-md-3 form-control form-control-lg" %>
+      </div>
+      <%= f.submit '変更を保存' ,class: "col-xs-2 btn-lg btn-success " %>
+      <% end %>
+    </div>
+  </div>
+</div>

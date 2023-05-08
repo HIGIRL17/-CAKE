@@ -6,11 +6,95 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+              <li class="nav-link">
+                <%= link_to my_page_path do %>
+                 <p><button type="button" class="btn btn-outline-dark">マイページ</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to items_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">商品一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to cart_items_path do%>
+                  <p><button type="button" class="btn btn-outline-dark">カート</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to destroy_customer_session_path, method: :delete do %>
+                  <p><button type="button" class="btn btn-outline-dark">ログアウト</button></p>
+                <% end %>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-link">
+                <%= link_to admin_items_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">商品一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to admin_customers_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">会員一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to admin_root_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">注文履歴一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to admin_genres_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">ジャンル一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <p><button type="button" class="btn btn-outline-dark">ログアウト</button></p>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-link">
+                <%= link_to about_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">About</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to items_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">商品一覧</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to new_customer_registration_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">新規登録</button></p>
+                <% end %>
+              </li>
+              <li class="nav-link">
+                <%= link_to customer_session_path do %>
+                  <p><button type="button" class="btn btn-outline-dark">ログイン</button></p>
+                <% end %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
   </body>
+  <main>
+      <%= yield %>
+  </main>
 </html>

@@ -1,0 +1,36 @@
+<div class="container">
+ <div class = "row">
+   <div class="col-xs-3">
+    <%= render "public/items/sidebar", genres: @genres %>
+   </div>
+   　<div class="col-5 d-flex align-items-center font-weight-bold" style="width: 100px; height: 180px; border: solid; margin-top: 80px; margin-bottom: 80px; margin-left: 150px;">
+      ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。
+    </div>
+
+    <div class="offset-3">
+      <h2 style="font-weight:900;">新着商品</h2>
+      <div class="row">
+        <% @item.each do |item| %>
+            <table class="col font-weight-bold">
+              <tr>
+                <td>
+                  <%= link_to(item_path(item.id)) do %>
+                    <%= image_tag item.get_image(150,200) %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr><td><%= item.name %></td></tr>
+              <tr><td>￥<%= item.add_tax_price.to_s(:delimited) %></td></tr>
+            </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="offset-10" style="margin-top:20px; padding-left:50px;">
+      <%= link_to "全ての商品を見る>", items_path %>
+    </div>
+    </div>
+ </div>
+</div>

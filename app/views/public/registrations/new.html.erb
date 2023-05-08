@@ -1,29 +1,91 @@
-<h2>Sign up</h2>
+<%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', method: :post do |f| %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="mx-auto container">
+  <div class="d-flex justify-content-center font-weight-bold" style="background-color:#f5f5f5; font-size:25px; margin-left:40px; margin-bottom:30px; height:40px; width:220px;">
+    新規会員登録
   </div>
+    <div class="form-group form-inline row font-weight-bold">
+      <div class="col-3 d-flex justify-content-between">
+        <%= f.label:名前 %>
+        <%= f.label:"(姓)　" %>
+      </div>
+      <div class="field col-3">
+        <%= f.text_field :last_name, autofocus: true, class: "col-auto form-control form-control-lg w-100", placeholder: "令和" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <%= f.label :"(名)　", class: "col-md-auto" %>
+      <div class="field col-3">
+        <%= f.text_field :first_name, class: "col-auto form-control form-control-lg w-100", placeholder: "道子" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group form-inline row font-weight-bold">
+      <div class="col-3 d-flex justify-content-between">
+        <%= f.label:フリガナ %>
+        <%= f.label:"(セイ)" %>
+      </div>
+      <div class="field col-3">
+        <%= f.text_field :last_name_kana, class: "col-auto form-control form-control-lg w-100", placeholder: "レイワ" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+      <%= f.label :"(メイ)", class: "col-md-auto" %>
+      <div class="field col-3">
+        <%= f.text_field :first_name_kana, class: "col-auto form-control form-control-lg w-100", placeholder: "ミチコ" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :メールアドレス, class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-3">
+        <%= f.email_field :email, autocomplete: "email", class: "col-auto form-control form-control-lg w-100", placeholder: "sample@example.com" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :"郵便番号(ハイフンなし)", class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-3">
+        <%= f.text_field :postal_code, class: "col-auto form-control form-control-lg w-100", placeholder: "0000000" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :住所, class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-7">
+        <%= f.text_field :address, class: "col-auto form-control form-control-lg w-100", placeholder: "東京都渋谷区代々木神園町0-0" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :"電話番号(ハイフンなし)", class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-3">
+        <%= f.text_field :telephone_number, class: "col-auto form-control form-control-lg w-100", placeholder: "0000000000" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :"パスワード(6文字以上)", class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-3">
+        <% if @minimum_password_length %>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "col-auto form-control form-control-lg w-100" %>
+      </div>
+    </div>
+
+    <div class="form-group form-inline row font-weight-bold">
+      <%= f.label :"パスワード(確認用)", class: "col-3 d-flex justify-content-start" %>
+      <div class="field col-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-auto form-control form-control-lg w-100" %>
+      </div>
+    </div>
+
+    <div class="actions col-5 font-weight-bold" style="margin-left:55px;">
+      <%= f.submit "新規作成", class: "offset-6 btn btn-success w-50", style: "font-size:20px;" %>
+    </div>
+    <div class="d-flex justify-content-center font-weight-bold" style="background-color:#f5f5f5; font-size:25px; margin-left:40px; margin-top:30px; margin-bottom:20px; height:40px; width:270px;">
+      既に登録済みの方
+    </div>
+    <div class="lead font-weight-bold">
+      <%= link_to "こちら", new_customer_session_path, class: "offset-1" %>　からログインしてください。
+    </div>
   </div>
 <% end %>
-
-<%= render "public/shared/links" %>

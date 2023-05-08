@@ -1,0 +1,34 @@
+ja:
+  enums:
+    order:
+      payment:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+
+      status:
+        wait_payment: "入金待ち"
+        confirm_payment: "入金確認"
+        making: "製作中"
+        preparing_ship: "発送準備中"
+        finish_prepare: "発送済み"
+
+    order_detail:
+      making_status:
+        start_not_possible: "着手不可"
+        production_pending: "製作待ち"
+        in_production: "製作中"
+        production_complete: "製作完了"
+
+  activerecord:
+    attributes:
+      item:
+        image: "商品画像"
+        name: "商品名"
+        introduction: "商品説明"
+        price: "税抜価格"
+        is_active: "販売ステータス"
+        genre_id: "ジャンル"
+    errors:
+      messages:
+        blank: "を入力してください。"
+        required: "を選択してください。"

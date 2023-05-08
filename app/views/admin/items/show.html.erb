@@ -1,16 +1,39 @@
-<h2>商品詳細</h2>
-
-  <h4>商品名</h4>
-  <%= @item.name %>
-  <h4>商品説明</h4>
-　<%= @item.introduction %>
-  <h4>ジャンル</h4>
-  <%= @item.genre.name %>
-  <h4>税込価格(税抜価格)</h4>
-  <%= @item.price %>
-  <h4>販売ステータス</h4>
-    <% if @item.is_active %>
-      販売中
-    <% else %>
-      販売停止中
-    <% end %>
+<div class="container">
+  <div class="d-flex justify-content-center font-weight-bold" style="background-color:#f5f5f5; font-size:25px; margin-left:40px; margin-bottom:30px; height:40px; width:220px;">
+    商品詳細
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-5 mt-2">
+        <%= image_tag @item.get_image(400,500) %>
+      </div>
+      <div class="col-7 mt-2 container">
+        <div class="form-group form-inline row">
+          <label class="col-md-4 d-flex justify-content-start font-weight-bold">商品名</label>
+          <%= @item.name %>
+        </div>
+        <div class="form-group form-inline row">
+          <label class="col-md-4 d-flex justify-content-start font-weight-bold">商品説明</label>
+          <%= @item.introduction %>
+        </div>
+        <div class="form-group form-inline row">
+          <label class="col-md-4 d-flex justify-content-start font-weight-bold">ジャンル</label>
+          <%= @item.genre.name %>
+        </div>
+        <div class="form-group form-inline row">
+          <label class="col-md-4 d-flex justify-content-start font-weight-bold">税込価格(税抜価格)</label>
+          <%= @item.add_tax_price.to_s(:delimited) %>円(<%= @item.price.to_s(:delimited) %>円)
+        </div>
+        <div class="form-group form-inline row">
+          <label class="col-md-4 d-flex justify-content-start font-weight-bold">販売ステータス</label>
+          <% if @item.is_active %>
+            <span class="text-success"><strong>販売中</strong></span>
+          <% else %>
+            <strong>販売停止中</strong>
+          <% end %>
+        </div>
+        <%= link_to "編集する", edit_admin_item_path , class:"btn btn-lg btn-success mt-3" %>
+      </div>
+    </div>
+  </div>
+</div>
